@@ -1,5 +1,8 @@
 pandas
-matplotlib
-sklearn
 numpy
-imblearn
+matplotlib
+scikit-learn
+seaborn
+imbalanced-learn
+xgboost
+umap-learn
