@@ -8,3 +8,4 @@ xgboost
 umap-learn
 tensorflow
 keras
+streamlit==1.28.0
