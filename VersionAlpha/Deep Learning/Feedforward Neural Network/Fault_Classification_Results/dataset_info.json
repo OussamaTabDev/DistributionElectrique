@@ -1,0 +1,31 @@
+{
+    "total_samples": 7861,
+    "train_samples": 4716,
+    "validation_samples": 1572,
+    "test_samples": 1573,
+    "features": [
+        "Ia",
+        "Ib",
+        "Ic",
+        "Va",
+        "Vb",
+        "Vc"
+    ],
+    "class_distribution": {
+        "0": 2365,
+        "1": 1129,
+        "3": 1004,
+        "4": 1134,
+        "5": 1096,
+        "6": 1133
+    },
+    "classes": {
+        "0": "No Fault",
+        "1": "LG",
+        "2": "LL AB",
+        "3": "LL BC",
+        "4": "LLG",
+        "5": "LLL",
+        "6": "LLLG"
+    }
+}

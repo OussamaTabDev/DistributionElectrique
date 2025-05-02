@@ -22,7 +22,7 @@ classifier.plot_confusion_matrix('ImprovedFNN')
 # Or alternatively, you can build and train specific models with custom parameters
 print("\nBuilding and training custom LSTM model...")
 classifier.build_model('LSTM', units_1=128, dropout_1=0.3, learning_rate=0.0005)
-classifier.train_model('LSTM', epochs=30, batch_size=64)
+classifier.train_model('LSTM', epochs=50, batch_size=64)
 classifier.evaluate_model('LSTM')
 
 # Save the best model

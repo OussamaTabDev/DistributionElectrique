@@ -1,0 +1,80 @@
+FAULT CLASSIFICATION DATASET SUMMARY
+==================================
+
+Total samples: 7861
+Training samples: 4716 (60.0%)
+Validation samples: 1572 (20.0%)
+Test samples: 1573 (20.0%)
+
+Features used:
+- Ia
+- Ib
+- Ic
+- Va
+- Vb
+- Vc
+
+Class distribution:
+- No Fault: 2365 samples
+- LG: 1129 samples
+- LL BC: 1004 samples
+- LLG: 1134 samples
+- LLL: 1096 samples
+- LLLG: 1133 samples
+
+Feature Statistics:
+------------------
+
+Ia:
+  Mean: 22.3695
+  Std: 466.4818
+  Min: -883.5423
+  25%: -86.1375
+  50%: 4.6081
+  75%: 270.1579
+  Max: 885.7386
+
+Ib:
+  Mean: -41.0013
+  Std: 435.6345
+  Min: -900.5270
+  25%: -250.0775
+  50%: 7.3404
+  75%: 90.8189
+  Max: 889.6850
+
+Ic:
+  Mean: 30.5312
+  Std: 367.1496
+  Min: -883.3451
+  25%: -62.4135
+  50%: -3.1538
+  75%: 48.8416
+  Max: 901.1012
+
+Va:
+  Mean: -0.0076
+  Std: 0.2908
+  Min: -0.6207
+  25%: -0.1382
+  50%: -0.0027
+  75%: 0.1142
+  Max: 0.5953
+
+Vb:
+  Mean: -0.0021
+  Std: 0.3172
+  Min: -0.6080
+  25%: -0.1781
+  50%: -0.0015
+  75%: 0.1519
+  Max: 0.6279
+
+Vc:
+  Mean: 0.0098
+  Std: 0.3080
+  Min: -0.6127
+  25%: -0.2177
+  50%: 0.0123
+  75%: 0.2477
+  Max: 0.6002

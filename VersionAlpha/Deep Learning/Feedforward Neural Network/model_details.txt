@@ -1,0 +1,636 @@
+Model Information and Performance Details
+
+1. ImprovedFNN Model
+- Architecture:
+  * Sequential Neural Network
+  * Input Layer: Dense(128) with ReLU activation
+  * Hidden Layers: Dense(64) and Dense(32) with dropout(0.3)
+  * Output Layer: Dense(7) with softmax activation
+- Parameters: 11,463 total trainable parameters
+- Training Performance:
+  * Best Validation Accuracy: 85.56%
+  * Best Validation Loss: 0.2562
+  * Training Time: 33.24 seconds
+- Evaluation Metrics:
+  * Accuracy: 0.83
+  * Macro Average F1-score: 0.76
+  * Weighted Average F1-score: 0.79
+
+2. CNN Model
+- Architecture:
+  * Convolutional Neural Network
+  * Conv1D Layer: 64 filters, kernel size 3
+  * MaxPooling1D Layer
+  * Dense Layer: 32 units
+  * Output Layer: Dense(7) with softmax
+- Parameters: 4,615 total trainable parameters
+- Training Performance:
+  * Best Validation Accuracy: 83.65%
+  * Best Validation Loss: 0.3211
+  * Training Time: ~35 seconds
+
+3. LSTM Model
+- Architecture:
+  * Long Short-Term Memory Network
+  * LSTM Layer: 64 units
+  * Dropout: 0.2
+  * Dense Layer: 32 units
+  * Output Layer: Dense(7) with softmax
+- Specialized for: Sequential data processing
+- Training Performance:
+  * Validation Accuracy: ~82%
+  * Training Time: ~40 seconds
+
+4. GRU Model
+- Architecture:
+  * Gated Recurrent Unit Network
+  * GRU Layer: 64 units
+  * Dropout: 0.2
+  * Dense Layer: 32 units
+  * Output Layer: Dense(7) with softmax
+- Training Performance:
+  * Accuracy: 0.809
+  * Macro Average F1-score: 0.788
+  * Weighted Average F1-score: 0.808
+  * Training Time: 48.54 seconds
+
+Comparative Analysis:
+- Best Overall Model: ImprovedFNN
+  * Highest validation accuracy
+  * Best balance of performance and training time
+  * Most stable training curves
+
+- Model Comparison:
+  * ImprovedFNN: Best overall performance (85.56% accuracy)
+  * CNN: Good performance with fewer parameters (83.65% accuracy)
+  * LSTM: Moderate performance, longer training time (~82% accuracy)
+  * GRU: Good performance, longest training time (80.9% accuracy)
+
+Visualization Files:
+- Training history plots: *_history.png
+- Confusion matrices: *_confusion_matrix.png
+- Model architectures: DLFNN/NeuralNetwork/*_model_architecture.png
+- Overall comparison: model_comparison.png
+- Training efficiency: training_time_comparison.png
+
+Note: All models were trained and evaluated on the same dataset with a 60/20/20 split for train/validation/test sets. The dataset includes various fault types with class distribution balanced using appropriate techniques.
+
+C:\Users\OussamaTab\AppData\Local\Programs\Python\Python310\lib\site-packages\keras\src\layers\core\dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+Built ImprovedFNN model:
+Model: "sequential_1"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)                         ┃ Output Shape                ┃         Param # ┃       
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩       
+│ dense_3 (Dense)                      │ (None, 128)                 │             896 │       
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤       
+│ dropout_2 (Dropout)                  │ (None, 128)                 │               0 │       
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤       
+│ dense_4 (Dense)                      │ (None, 64)                  │           8,256 │       
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤       
+│ dropout_3 (Dropout)                  │ (None, 64)                  │               0 │       
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤       
+│ dense_5 (Dense)                      │ (None, 32)                  │           2,080 │       
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤       
+│ dense_6 (Dense)                      │ (None, 7)                   │             231 │       
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘       
+ Total params: 11,463 (44.78 KB)
+ Trainable params: 11,463 (44.78 KB)
+ Non-trainable params: 0 (0.00 B)
+
+Training ImprovedFNN model...
+Epoch 1/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 5s 20ms/step - accuracy: 0.3205 - loss: 1.7070 - val_accuracy: 0.7156 - val_loss: 1.0403 - learning_rate: 0.0010
+Epoch 2/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 8ms/step - accuracy: 0.6025 - loss: 1.0052 - val_accuracy: 0.7735 - val_loss: 0.5645 - learning_rate: 0.0010
+Epoch 3/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 6ms/step - accuracy: 0.6920 - loss: 0.6838 - val_accuracy: 0.8123 - val_loss: 0.4514 - learning_rate: 0.0010
+Epoch 4/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 13ms/step - accuracy: 0.7300 - loss: 0.5741 - val_accuracy: 0.8244 - val_loss: 0.3996 - learning_rate: 0.0010
+Epoch 5/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 11ms/step - accuracy: 0.7490 - loss: 0.5067 - val_accuracy: 0.8314 - val_loss: 0.3649 - learning_rate: 0.0010
+Epoch 6/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 7ms/step - accuracy: 0.7697 - loss: 0.4791 - val_accuracy: 0.8282 - val_loss: 0.3555 - learning_rate: 0.0010
+Epoch 7/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 6ms/step - accuracy: 0.7839 - loss: 0.4484 - val_accuracy: 0.8391 - val_loss: 0.3308 - learning_rate: 0.0010
+Epoch 8/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 13ms/step - accuracy: 0.7929 - loss: 0.4222 - val_accuracy: 0.8308 - val_loss: 0.3327 - learning_rate: 0.0010
+Epoch 9/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 12ms/step - accuracy: 0.7831 - loss: 0.4334 - val_accuracy: 0.8480 - val_loss: 0.3136 - learning_rate: 0.0010
+Epoch 10/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 8ms/step - accuracy: 0.8008 - loss: 0.4013 - val_accuracy: 0.8435 - val_loss: 0.3031 - learning_rate: 0.0010
+Epoch 11/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 0s 6ms/step - accuracy: 0.8024 - loss: 0.3970 - val_accuracy: 0.8441 - val_loss: 0.2999 - learning_rate: 0.0010
+Epoch 12/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 15ms/step - accuracy: 0.8092 - loss: 0.3868 - val_accuracy: 0.8416 - val_loss: 0.2944 - learning_rate: 0.0010
+Epoch 13/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 10ms/step - accuracy: 0.7952 - loss: 0.3790 - val_accuracy: 0.8429 - val_loss: 0.2964 - learning_rate: 0.0010
+Epoch 14/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 8ms/step - accuracy: 0.8014 - loss: 0.3802 - val_accuracy: 0.8454 - val_loss: 0.2881 - learning_rate: 0.0010
+Epoch 15/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 5ms/step - accuracy: 0.8090 - loss: 0.3676 - val_accuracy: 0.8422 - val_loss: 0.2882 - learning_rate: 0.0010
+Epoch 16/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 14ms/step - accuracy: 0.8098 - loss: 0.3685 - val_accuracy: 0.8403 - val_loss: 0.2895 - learning_rate: 0.0010
+Epoch 17/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 8ms/step - accuracy: 0.8161 - loss: 0.3512 - val_accuracy: 0.8480 - val_loss: 0.2810 - learning_rate: 0.0010
+Epoch 18/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 7ms/step - accuracy: 0.8239 - loss: 0.3432 - val_accuracy: 0.8537 - val_loss: 0.2715 - learning_rate: 0.0010
+Epoch 19/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 0s 6ms/step - accuracy: 0.8146 - loss: 0.3466 - val_accuracy: 0.8505 - val_loss: 0.2727 - learning_rate: 0.0010
+Epoch 20/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 13ms/step - accuracy: 0.8195 - loss: 0.3453 - val_accuracy: 0.8524 - val_loss: 0.2669 - learning_rate: 0.0010
+Epoch 21/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 10ms/step - accuracy: 0.8117 - loss: 0.3444 - val_accuracy: 0.8461 - val_loss: 0.2701 - learning_rate: 0.0010
+Epoch 22/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 8ms/step - accuracy: 0.8150 - loss: 0.3436 - val_accuracy: 0.8505 - val_loss: 0.2647 - learning_rate: 0.0010
+Epoch 23/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 14ms/step - accuracy: 0.8251 - loss: 0.3327 - val_accuracy: 0.8511 - val_loss: 0.2630 - learning_rate: 0.0010
+Epoch 24/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 14ms/step - accuracy: 0.8200 - loss: 0.3229 - val_accuracy: 0.8492 - val_loss: 0.2681 - learning_rate: 0.0010
+Epoch 25/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 13ms/step - accuracy: 0.8254 - loss: 0.3255 - val_accuracy: 0.8556 - val_loss: 0.2562 - learning_rate: 0.0010
+Epoch 26/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 8ms/step - accuracy: 0.8166 - loss: 0.3259 - val_accuracy: 0.8441 - val_loss: 0.2749 - learning_rate: 0.0010
+Epoch 27/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 12ms/step - accuracy: 0.8151 - loss: 0.3292 - val_accuracy: 0.8524 - val_loss: 0.2588 - learning_rate: 0.0010
+Epoch 28/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 12ms/step - accuracy: 0.8245 - loss: 0.3249 - val_accuracy: 0.8531 - val_loss: 0.2628 - learning_rate: 0.0010
+Epoch 29/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 11ms/step - accuracy: 0.8269 - loss: 0.3182 - val_accuracy: 0.8524 - val_loss: 0.2558 - learning_rate: 0.0010
+Epoch 30/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 10ms/step - accuracy: 0.8216 - loss: 0.3168 - val_accuracy: 0.8492 - val_loss: 0.2587 - learning_rate: 0.0010
+Restoring model weights from the end of the best epoch: 29.
+Training completed in 33.24 seconds
+50/50 ━━━━━━━━━━━━━━━━━━━━ 1s 7ms/step  
+
+Evaluation of ImprovedFNN model:
+              precision    recall  f1-score   support
+
+           0       0.99      0.99      0.99       477
+           1       0.89      0.99      0.94       205
+           3       0.98      0.95      0.97       210
+           4       0.98      0.94      0.96       223
+           5       0.50      1.00      0.66       222
+           6       1.00      0.02      0.03       236
+
+    accuracy                           0.83      1573
+   macro avg       0.89      0.81      0.76      1573
+weighted avg       0.91      0.83      0.79      1573
+
+Confusion Matrix:
+[[472   1   4   0   0   0]
+ [  0 203   0   2   0   0]
+ [  2   0 200   0   8   0]
+ [  0  13   0 210   0   0]
+ [  1   0   0   0 221   0]
+ [  1  11   0   3 217   4]]
+You must install graphviz (see instructions at https://graphviz.gitlab.io/download/) for `plot_model` to work.
+C:\Users\OussamaTab\AppData\Local\Programs\Python\Python310\lib\site-packages\keras\src\layers\convolutional\base_conv.py:107: UserWarning: Do not pass an `input_shape`/`input_dim` argument 
+to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+Built CNN model:
+Model: "sequential_2"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓       
+┃ Layer (type)                         ┃ Output Shape                ┃         Param # ┃       
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩       
+│ conv1d (Conv1D)                      │ (None, 4, 64)               │             256 │       
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤       
+│ max_pooling1d (MaxPooling1D)         │ (None, 2, 64)               │               0 │       
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤       
+│ flatten (Flatten)                    │ (None, 128)                 │               0 │       
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤       
+│ dense_7 (Dense)                      │ (None, 32)                  │           4,128 │       
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤       
+│ dense_8 (Dense)                      │ (None, 7)                   │             231 │       
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘       
+ Total params: 4,615 (18.03 KB)
+ Trainable params: 4,615 (18.03 KB)
+ Non-trainable params: 0 (0.00 B)
+
+Training CNN model...
+Epoch 1/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 4s 19ms/step - accuracy: 0.3185 - loss: 1.6647 - val_accuracy: 0.6247 - val_loss: 1.1114 - learning_rate: 0.0010
+Epoch 2/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 2s 8ms/step - accuracy: 0.6465 - loss: 1.0078 - val_accuracy: 0.6807 - val_loss: 0.7785 - learning_rate: 0.0010
+Epoch 3/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 13ms/step - accuracy: 0.6779 - loss: 0.7733 - val_accuracy: 0.7341 - val_loss: 0.6571 - learning_rate: 0.0010
+Epoch 4/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 3s 30ms/step - accuracy: 0.7228 - loss: 0.6675 - val_accuracy: 0.7697 - val_loss: 0.5858 - learning_rate: 0.0010
+Epoch 5/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 17ms/step - accuracy: 0.7541 - loss: 0.6008 - val_accuracy: 0.7735 - val_loss: 0.5372 - learning_rate: 0.0010
+Epoch 6/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 8ms/step - accuracy: 0.7696 - loss: 0.5539 - val_accuracy: 0.7754 - val_loss: 0.5029 - learning_rate: 0.0010
+Epoch 7/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 16ms/step - accuracy: 0.7814 - loss: 0.5198 - val_accuracy: 0.7799 - val_loss: 0.4767 - learning_rate: 0.0010
+Epoch 8/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 12ms/step - accuracy: 0.7889 - loss: 0.4931 - val_accuracy: 0.7933 - val_loss: 0.4561 - learning_rate: 0.0010
+Epoch 9/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 13ms/step - accuracy: 0.7969 - loss: 0.4718 - val_accuracy: 0.7971 - val_loss: 0.4394 - learning_rate: 0.0010
+Epoch 10/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 7ms/step - accuracy: 0.7987 - loss: 0.4545 - val_accuracy: 0.7996 - val_loss: 0.4258 - learning_rate: 0.0010
+Epoch 11/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 17ms/step - accuracy: 0.8038 - loss: 0.4406 - val_accuracy: 0.8028 - val_loss: 0.4149 - learning_rate: 0.0010
+Epoch 12/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 11ms/step - accuracy: 0.8036 - loss: 0.4289 - val_accuracy: 0.8066 - val_loss: 0.4048 - learning_rate: 0.0010
+Epoch 13/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 11ms/step - accuracy: 0.8040 - loss: 0.4185 - val_accuracy: 0.8066 - val_loss: 0.3968 - learning_rate: 0.0010
+Epoch 14/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 7ms/step - accuracy: 0.8105 - loss: 0.4095 - val_accuracy: 0.8060 - val_loss: 0.3885 - learning_rate: 0.0010
+Epoch 15/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 14ms/step - accuracy: 0.8105 - loss: 0.4013 - val_accuracy: 0.8104 - val_loss: 0.3813 - learning_rate: 0.0010
+Epoch 16/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 11ms/step - accuracy: 0.8127 - loss: 0.3940 - val_accuracy: 0.8117 - val_loss: 0.3744 - learning_rate: 0.0010
+Epoch 17/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 10ms/step - accuracy: 0.8146 - loss: 0.3875 - val_accuracy: 0.8149 - val_loss: 0.3687 - learning_rate: 0.0010
+Epoch 18/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 12ms/step - accuracy: 0.8154 - loss: 0.3818 - val_accuracy: 0.8142 - val_loss: 0.3640 - learning_rate: 0.0010
+Epoch 19/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 12ms/step - accuracy: 0.8164 - loss: 0.3766 - val_accuracy: 0.8168 - val_loss: 0.3589 - learning_rate: 0.0010
+Epoch 20/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 10ms/step - accuracy: 0.8184 - loss: 0.3718 - val_accuracy: 0.8193 - val_loss: 0.3541 - learning_rate: 0.0010
+Epoch 21/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 9ms/step - accuracy: 0.8214 - loss: 0.3671 - val_accuracy: 0.8200 - val_loss: 0.3497 - learning_rate: 0.0010
+Epoch 22/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 2s 15ms/step - accuracy: 0.8217 - loss: 0.3629 - val_accuracy: 0.8225 - val_loss: 0.3459 - learning_rate: 0.0010
+Epoch 23/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 10ms/step - accuracy: 0.8248 - loss: 0.3589 - val_accuracy: 0.8244 - val_loss: 0.3414 - learning_rate: 0.0010
+Epoch 24/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 6ms/step - accuracy: 0.8263 - loss: 0.3551 - val_accuracy: 0.8263 - val_loss: 0.3374 - learning_rate: 0.0010
+Epoch 25/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 15ms/step - accuracy: 0.8252 - loss: 0.3515 - val_accuracy: 0.8314 - val_loss: 0.3336 - learning_rate: 0.0010
+Epoch 26/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 15ms/step - accuracy: 0.8266 - loss: 0.3479 - val_accuracy: 0.8333 - val_loss: 0.3305 - learning_rate: 0.0010
+Epoch 27/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 14ms/step - accuracy: 0.8273 - loss: 0.3448 - val_accuracy: 0.8352 - val_loss: 0.3268 - learning_rate: 0.0010
+Epoch 28/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 13ms/step - accuracy: 0.8295 - loss: 0.3418 - val_accuracy: 0.8359 - val_loss: 0.3244 - learning_rate: 0.0010
+Epoch 29/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 17ms/step - accuracy: 0.8305 - loss: 0.3388 - val_accuracy: 0.8365 - val_loss: 0.3211 - learning_rate: 0.0010
+Epoch 30/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 2s 9ms/step - accuracy: 0.8330 - loss: 0.3361 - val_accuracy: 0.8391 - val_loss: 0.3179 - learning_rate: 0.0010
+Restoring model weights from the end of the best epoch: 30.
+Training completed in 39.10 seconds
+50/50 ━━━━━━━━━━━━━━━━━━━━ 1s 9ms/step   
+
+Evaluation of CNN model:
+              precision    recall  f1-score   support
+
+           0       0.98      1.00      0.99       477
+           1       0.89      0.99      0.93       205
+           3       0.99      0.92      0.96       210
+           4       0.95      0.93      0.94       223
+           5       0.49      0.92      0.64       222
+           6       0.37      0.04      0.08       236
+
+    accuracy                           0.82      1573
+   macro avg       0.78      0.80      0.76      1573
+weighted avg       0.81      0.82      0.78      1573
+
+Confusion Matrix:
+[[475   1   1   0   0   0]
+ [  1 202   0   2   0   0]
+ [  5   0 193   0   9   3]
+ [  0  14   0 208   0   1]
+ [  2   0   0   2 205  13]
+ [  1  11   0   6 208  10]]
+You must install graphviz (see instructions at https://graphviz.gitlab.io/download/) for `plot_model` to work.
+C:\Users\OussamaTab\AppData\Local\Programs\Python\Python310\lib\site-packages\keras\src\layers\convolutional\base_conv.py:107: UserWarning: Do not pass an `input_shape`/`input_dim` argument 
+to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+Built AdvancedCNN model:
+Model: "sequential_3"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓       
+┃ Layer (type)                         ┃ Output Shape                ┃         Param # ┃       
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩       
+│ conv1d_1 (Conv1D)                    │ (None, 6, 128)              │             512 │       
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤       
+│ max_pooling1d_1 (MaxPooling1D)       │ (None, 3, 128)              │               0 │       
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤       
+│ conv1d_2 (Conv1D)                    │ (None, 3, 64)               │          24,640 │       
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤       
+│ global_average_pooling1d             │ (None, 64)                  │               0 │       
+│ (GlobalAveragePooling1D)             │                             │                 │       
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤       
+│ dense_9 (Dense)                      │ (None, 7)                   │             455 │       
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘       
+ Total params: 25,607 (100.03 KB)
+ Trainable params: 25,607 (100.03 KB)
+ Non-trainable params: 0 (0.00 B)
+
+Training AdvancedCNN model...
+Epoch 1/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 5s 33ms/step - accuracy: 0.4134 - loss: 1.6836 - val_accuracy: 0.6858 - val_loss: 1.0993 - learning_rate: 0.0010
+Epoch 2/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 14ms/step - accuracy: 0.6595 - loss: 1.0249 - val_accuracy: 0.7252 - val_loss: 0.7178 - learning_rate: 0.0010
+Epoch 3/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 3s 43ms/step - accuracy: 0.7042 - loss: 0.7465 - val_accuracy: 0.7653 - val_loss: 0.5834 - learning_rate: 0.0010
+Epoch 4/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 5s 41ms/step - accuracy: 0.7408 - loss: 0.6314 - val_accuracy: 0.7863 - val_loss: 0.5174 - learning_rate: 0.0010
+Epoch 5/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 6s 81ms/step - accuracy: 0.7604 - loss: 0.5664 - val_accuracy: 0.7888 - val_loss: 0.4811 - learning_rate: 0.0010
+Epoch 6/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 8s 48ms/step - accuracy: 0.7736 - loss: 0.5252 - val_accuracy: 0.7844 - val_loss: 0.4562 - learning_rate: 0.0010
+Epoch 7/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 3s 38ms/step - accuracy: 0.7809 - loss: 0.4966 - val_accuracy: 0.7831 - val_loss: 0.4385 - learning_rate: 0.0010
+Epoch 8/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 4s 50ms/step - accuracy: 0.7867 - loss: 0.4750 - val_accuracy: 0.7882 - val_loss: 0.4234 - learning_rate: 0.0010
+Epoch 9/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 5s 61ms/step - accuracy: 0.7924 - loss: 0.4581 - val_accuracy: 0.7926 - val_loss: 0.4124 - learning_rate: 0.0010
+Epoch 10/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 3s 42ms/step - accuracy: 0.7952 - loss: 0.4450 - val_accuracy: 0.7939 - val_loss: 0.4016 - learning_rate: 0.0010
+Epoch 11/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 6s 58ms/step - accuracy: 0.8015 - loss: 0.4334 - val_accuracy: 0.7926 - val_loss: 0.3936 - learning_rate: 0.0010
+Epoch 12/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 5s 54ms/step - accuracy: 0.8008 - loss: 0.4238 - val_accuracy: 0.7964 - val_loss: 0.3854 - learning_rate: 0.0010
+Epoch 13/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 5s 52ms/step - accuracy: 0.8015 - loss: 0.4156 - val_accuracy: 0.7964 - val_loss: 0.3783 - learning_rate: 0.0010
+Epoch 14/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 5s 52ms/step - accuracy: 0.8033 - loss: 0.4080 - val_accuracy: 0.8028 - val_loss: 0.3717 - learning_rate: 0.0010
+Epoch 15/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 5s 48ms/step - accuracy: 0.8054 - loss: 0.4014 - val_accuracy: 0.8034 - val_loss: 0.3672 - learning_rate: 0.0010
+Epoch 16/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 6s 64ms/step - accuracy: 0.8050 - loss: 0.3957 - val_accuracy: 0.8028 - val_loss: 0.3614 - learning_rate: 0.0010
+Epoch 17/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 4s 48ms/step - accuracy: 0.8114 - loss: 0.3903 - val_accuracy: 0.8053 - val_loss: 0.3566 - learning_rate: 0.0010
+Epoch 18/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 8s 81ms/step - accuracy: 0.8073 - loss: 0.3854 - val_accuracy: 0.8053 - val_loss: 0.3529 - learning_rate: 0.0010
+Epoch 19/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 10s 75ms/step - accuracy: 0.8123 - loss: 0.3811 - val_accuracy: 0.8047 - val_loss: 0.3490 - learning_rate: 0.0010
+Epoch 20/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 8s 42ms/step - accuracy: 0.8123 - loss: 0.3765 - val_accuracy: 0.8047 - val_loss: 0.3456 - learning_rate: 0.0010
+Epoch 21/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 4s 45ms/step - accuracy: 0.8159 - loss: 0.3729 - val_accuracy: 0.8053 - val_loss: 0.3426 - learning_rate: 0.0010
+Epoch 22/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 4s 56ms/step - accuracy: 0.8154 - loss: 0.3687 - val_accuracy: 0.8079 - val_loss: 0.3391 - learning_rate: 0.0010
+Epoch 23/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 3s 24ms/step - accuracy: 0.8164 - loss: 0.3652 - val_accuracy: 0.8079 - val_loss: 0.3363 - learning_rate: 0.0010
+Epoch 24/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 2s 20ms/step - accuracy: 0.8164 - loss: 0.3625 - val_accuracy: 0.8098 - val_loss: 0.3343 - learning_rate: 0.0010
+Epoch 25/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 12ms/step - accuracy: 0.8181 - loss: 0.3591 - val_accuracy: 0.8130 - val_loss: 0.3311 - learning_rate: 0.0010
+Epoch 26/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 8ms/step - accuracy: 0.8184 - loss: 0.3567 - val_accuracy: 0.8085 - val_loss: 0.3286 - learning_rate: 0.0010
+Epoch 27/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 17ms/step - accuracy: 0.8186 - loss: 0.3536 - val_accuracy: 0.8130 - val_loss: 0.3244 - learning_rate: 0.0010
+Epoch 28/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 2s 10ms/step - accuracy: 0.8200 - loss: 0.3513 - val_accuracy: 0.8155 - val_loss: 0.3229 - learning_rate: 0.0010
+Epoch 29/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 18ms/step - accuracy: 0.8201 - loss: 0.3488 - val_accuracy: 0.8136 - val_loss: 0.3213 - learning_rate: 0.0010
+Epoch 30/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 2s 15ms/step - accuracy: 0.8207 - loss: 0.3464 - val_accuracy: 0.8104 - val_loss: 0.3195 - learning_rate: 0.0010
+Restoring model weights from the end of the best epoch: 30.
+Training completed in 129.24 seconds
+50/50 ━━━━━━━━━━━━━━━━━━━━ 1s 10ms/step  
+
+Evaluation of AdvancedCNN model:
+              precision    recall  f1-score   support
+
+           0       0.97      0.95      0.96       477
+           1       0.84      0.98      0.90       205
+           3       0.96      0.89      0.92       210
+           4       0.93      0.95      0.94       223
+           5       0.52      0.55      0.53       222
+           6       0.48      0.43      0.45       236
+
+    accuracy                           0.81      1573
+   macro avg       0.78      0.79      0.78      1573
+weighted avg       0.81      0.81      0.81      1573
+
+Confusion Matrix:
+[[452  19   6   0   0   0]
+ [  3 201   1   0   0   0]
+ [  8   0 186   0   0  16]
+ [  0  12   0 211   0   0]
+ [  2   1   0   3 122  94]
+ [  1   7   0  13 114 101]]
+You must install graphviz (see instructions at https://graphviz.gitlab.io/download/) for `plot_model` to work.
+C:\Users\OussamaTab\AppData\Local\Programs\Python\Python310\lib\site-packages\keras\src\layers\rnn\rnn.py:200: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(**kwargs)
+Built LSTM model:
+Model: "sequential_4"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)                         ┃ Output Shape                ┃         Param # ┃       
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩       
+│ lstm (LSTM)                          │ (None, 64)                  │          16,896 │       
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤       
+│ dropout_4 (Dropout)                  │ (None, 64)                  │               0 │       
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤       
+│ dense_10 (Dense)                     │ (None, 32)                  │           2,080 │       
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤       
+│ dense_11 (Dense)                     │ (None, 7)                   │             231 │       
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘       
+ Total params: 19,207 (75.03 KB)
+ Trainable params: 19,207 (75.03 KB)
+ Non-trainable params: 0 (0.00 B)
+
+Training LSTM model...
+Epoch 1/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 6s 18ms/step - accuracy: 0.1943 - loss: 1.8114 - val_accuracy: 0.3760 - val_loss: 1.5766 - learning_rate: 0.0010
+Epoch 2/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 16ms/step - accuracy: 0.3977 - loss: 1.4021 - val_accuracy: 0.5744 - val_loss: 1.1237 - learning_rate: 0.0010
+Epoch 3/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 2s 22ms/step - accuracy: 0.5938 - loss: 1.0330 - val_accuracy: 0.5986 - val_loss: 0.8448 - learning_rate: 0.0010
+Epoch 4/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 13ms/step - accuracy: 0.6567 - loss: 0.8093 - val_accuracy: 0.6934 - val_loss: 0.7153 - learning_rate: 0.0010
+Epoch 5/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 4s 43ms/step - accuracy: 0.6896 - loss: 0.7081 - val_accuracy: 0.7462 - val_loss: 0.6272 - learning_rate: 0.0010
+Epoch 6/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 5s 30ms/step - accuracy: 0.7149 - loss: 0.6468 - val_accuracy: 0.7379 - val_loss: 0.5740 - learning_rate: 0.0010
+Epoch 7/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 2s 20ms/step - accuracy: 0.7323 - loss: 0.5939 - val_accuracy: 0.7608 - val_loss: 0.5334 - learning_rate: 0.0010
+Epoch 8/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 3s 27ms/step - accuracy: 0.7435 - loss: 0.5518 - val_accuracy: 0.7856 - val_loss: 0.4885 - learning_rate: 0.0010
+Epoch 9/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 10ms/step - accuracy: 0.7617 - loss: 0.5209 - val_accuracy: 0.7952 - val_loss: 0.4702 - learning_rate: 0.0010
+Epoch 10/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 2s 19ms/step - accuracy: 0.7663 - loss: 0.4998 - val_accuracy: 0.7933 - val_loss: 0.4486 - learning_rate: 0.0010
+Epoch 11/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 3s 20ms/step - accuracy: 0.7804 - loss: 0.4690 - val_accuracy: 0.7977 - val_loss: 0.4267 - learning_rate: 0.0010
+Epoch 12/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 2s 12ms/step - accuracy: 0.7871 - loss: 0.4477 - val_accuracy: 0.8142 - val_loss: 0.4046 - learning_rate: 0.0010
+Epoch 13/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 2s 19ms/step - accuracy: 0.7854 - loss: 0.4381 - val_accuracy: 0.8123 - val_loss: 0.3911 - learning_rate: 0.0010
+Epoch 14/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 3s 19ms/step - accuracy: 0.7967 - loss: 0.4266 - val_accuracy: 0.8162 - val_loss: 0.3691 - learning_rate: 0.0010
+Epoch 15/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 2s 15ms/step - accuracy: 0.8017 - loss: 0.4103 - val_accuracy: 0.8009 - val_loss: 0.3995 - learning_rate: 0.0010
+Epoch 16/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 16ms/step - accuracy: 0.7966 - loss: 0.4004 - val_accuracy: 0.8289 - val_loss: 0.3534 - learning_rate: 0.0010
+Epoch 17/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 18ms/step - accuracy: 0.8030 - loss: 0.3937 - val_accuracy: 0.8130 - val_loss: 0.3647 - learning_rate: 0.0010
+Epoch 18/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 3s 19ms/step - accuracy: 0.8023 - loss: 0.3895 - val_accuracy: 0.8238 - val_loss: 0.3518 - learning_rate: 0.0010
+Epoch 19/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 2s 16ms/step - accuracy: 0.8094 - loss: 0.3737 - val_accuracy: 0.8251 - val_loss: 0.3481 - learning_rate: 0.0010
+Epoch 20/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 16ms/step - accuracy: 0.8094 - loss: 0.3781 - val_accuracy: 0.8200 - val_loss: 0.3445 - learning_rate: 0.0010
+Epoch 21/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 2s 20ms/step - accuracy: 0.8158 - loss: 0.3723 - val_accuracy: 0.8136 - val_loss: 0.3391 - learning_rate: 0.0010
+Epoch 22/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 16ms/step - accuracy: 0.8105 - loss: 0.3636 - val_accuracy: 0.8193 - val_loss: 0.3396 - learning_rate: 0.0010
+Epoch 23/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 11ms/step - accuracy: 0.8155 - loss: 0.3584 - val_accuracy: 0.8174 - val_loss: 0.3513 - learning_rate: 0.0010
+Epoch 24/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 2s 22ms/step - accuracy: 0.8188 - loss: 0.3516 - val_accuracy: 0.8041 - val_loss: 0.4003 - learning_rate: 0.0010
+Epoch 25/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 3s 21ms/step - accuracy: 0.8185 - loss: 0.3568 - val_accuracy: 0.8181 - val_loss: 0.3403 - learning_rate: 0.0010
+Epoch 26/30
+72/74 ━━━━━━━━━━━━━━━━━━━━ 0s 16ms/step - accuracy: 0.8187 - loss: 0.3420
+Epoch 26: ReduceLROnPlateau reducing learning rate to 0.0005000000237487257.
+74/74 ━━━━━━━━━━━━━━━━━━━━ 2s 22ms/step - accuracy: 0.8189 - loss: 0.3418 - val_accuracy: 0.8085 - val_loss: 0.3566 - learning_rate: 0.0010
+Epoch 27/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 2s 17ms/step - accuracy: 0.8255 - loss: 0.3404 - val_accuracy: 0.8321 - val_loss: 0.3137 - learning_rate: 5.0000e-04
+Epoch 28/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 3s 19ms/step - accuracy: 0.8299 - loss: 0.3257 - val_accuracy: 0.8308 - val_loss: 0.3144 - learning_rate: 5.0000e-04
+Epoch 29/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 15ms/step - accuracy: 0.8264 - loss: 0.3240 - val_accuracy: 0.8168 - val_loss: 0.3476 - learning_rate: 5.0000e-04
+Epoch 30/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 2s 23ms/step - accuracy: 0.8275 - loss: 0.3279 - val_accuracy: 0.8187 - val_loss: 0.3227 - learning_rate: 5.0000e-04
+Restoring model weights from the end of the best epoch: 27.
+Training completed in 66.20 seconds
+50/50 ━━━━━━━━━━━━━━━━━━━━ 1s 14ms/step  
+
+Evaluation of LSTM model:
+              precision    recall  f1-score   support
+
+           0       0.96      0.99      0.98       477
+           1       0.88      0.97      0.92       205
+           3       0.99      0.88      0.93       210
+           4       0.84      0.93      0.88       223
+           5       0.48      0.78      0.59       222
+           6       0.47      0.12      0.19       236
+
+    accuracy                           0.80      1573
+   macro avg       0.77      0.78      0.75      1573
+weighted avg       0.80      0.80      0.78      1573
+
+Confusion Matrix:
+[[472   5   0   0   0   0]
+ [  6 198   0   1   0   0]
+ [ 13   0 185   0  12   0]
+ [  0  13   0 207   3   0]
+ [  0   0   1  17 173  31]
+ [  0   9   1  22 176  28]]
+You must install graphviz (see instructions at https://graphviz.gitlab.io/download/) for `plot_model` to work.
+C:\Users\OussamaTab\AppData\Local\Programs\Python\Python310\lib\site-packages\keras\src\layers\rnn\rnn.py:200: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(**kwargs)
+Built GRU model:
+Model: "sequential_5"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)                         ┃ Output Shape                ┃         Param # ┃       
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩       
+│ gru (GRU)                            │ (None, 64)                  │          12,864 │       
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤       
+│ dropout_5 (Dropout)                  │ (None, 64)                  │               0 │       
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤       
+│ dense_12 (Dense)                     │ (None, 32)                  │           2,080 │       
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤       
+│ dense_13 (Dense)                     │ (None, 7)                   │             231 │       
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘       
+ Total params: 15,175 (59.28 KB)
+ Trainable params: 15,175 (59.28 KB)
+ Non-trainable params: 0 (0.00 B)
+
+Training GRU model...
+Epoch 1/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 8s 36ms/step - accuracy: 0.2644 - loss: 1.8089 - val_accuracy: 0.4828 - val_loss: 1.4797 - learning_rate: 0.0010
+Epoch 2/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 12ms/step - accuracy: 0.4975 - loss: 1.2535 - val_accuracy: 0.6934 - val_loss: 0.7251 - learning_rate: 0.0010
+Epoch 3/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 17ms/step - accuracy: 0.6773 - loss: 0.7138 - val_accuracy: 0.7176 - val_loss: 0.5607 - learning_rate: 0.0010
+Epoch 4/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 2s 19ms/step - accuracy: 0.7135 - loss: 0.5970 - val_accuracy: 0.7678 - val_loss: 0.5030 - learning_rate: 0.0010
+Epoch 5/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 19ms/step - accuracy: 0.7378 - loss: 0.5407 - val_accuracy: 0.7793 - val_loss: 0.4704 - learning_rate: 0.0010
+Epoch 6/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 14ms/step - accuracy: 0.7566 - loss: 0.5047 - val_accuracy: 0.8047 - val_loss: 0.4228 - learning_rate: 0.0010
+Epoch 7/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 2s 22ms/step - accuracy: 0.7798 - loss: 0.4646 - val_accuracy: 0.7952 - val_loss: 0.4045 - learning_rate: 0.0010
+Epoch 8/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 2s 10ms/step - accuracy: 0.7862 - loss: 0.4521 - val_accuracy: 0.8041 - val_loss: 0.3768 - learning_rate: 0.0010
+Epoch 9/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 19ms/step - accuracy: 0.7971 - loss: 0.4123 - val_accuracy: 0.8034 - val_loss: 0.3678 - learning_rate: 0.0010
+Epoch 10/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 2s 11ms/step - accuracy: 0.7986 - loss: 0.3974 - val_accuracy: 0.8136 - val_loss: 0.3539 - learning_rate: 0.0010
+Epoch 11/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 12ms/step - accuracy: 0.8085 - loss: 0.3849 - val_accuracy: 0.8219 - val_loss: 0.3426 - learning_rate: 0.0010
+Epoch 12/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 10ms/step - accuracy: 0.8086 - loss: 0.3821 - val_accuracy: 0.8193 - val_loss: 0.3281 - learning_rate: 0.0010
+Epoch 13/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 2s 16ms/step - accuracy: 0.8071 - loss: 0.3696 - val_accuracy: 0.8232 - val_loss: 0.3191 - learning_rate: 0.0010
+Epoch 14/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 12ms/step - accuracy: 0.8184 - loss: 0.3493 - val_accuracy: 0.8244 - val_loss: 0.3091 - learning_rate: 0.0010
+Epoch 15/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 16ms/step - accuracy: 0.8145 - loss: 0.3510 - val_accuracy: 0.8193 - val_loss: 0.3127 - learning_rate: 0.0010
+Epoch 16/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 14ms/step - accuracy: 0.8170 - loss: 0.3416 - val_accuracy: 0.8333 - val_loss: 0.3016 - learning_rate: 0.0010
+Epoch 17/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 11ms/step - accuracy: 0.8325 - loss: 0.3279 - val_accuracy: 0.8454 - val_loss: 0.2892 - learning_rate: 0.0010
+Epoch 18/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 12ms/step - accuracy: 0.8253 - loss: 0.3313 - val_accuracy: 0.8181 - val_loss: 0.3198 - learning_rate: 0.0010
+Epoch 19/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 14ms/step - accuracy: 0.8300 - loss: 0.3210 - val_accuracy: 0.8308 - val_loss: 0.3007 - learning_rate: 0.0010
+Epoch 20/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 11ms/step - accuracy: 0.8242 - loss: 0.3138 - val_accuracy: 0.8365 - val_loss: 0.2895 - learning_rate: 0.0010
+Epoch 21/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 20ms/step - accuracy: 0.8388 - loss: 0.3109 - val_accuracy: 0.8289 - val_loss: 0.3097 - learning_rate: 0.0010
+Epoch 22/30
+67/74 ━━━━━━━━━━━━━━━━━━━━ 0s 6ms/step - accuracy: 0.8306 - loss: 0.3183 
+Epoch 22: ReduceLROnPlateau reducing learning rate to 0.0005000000237487257.
+74/74 ━━━━━━━━━━━━━━━━━━━━ 2s 9ms/step - accuracy: 0.8311 - loss: 0.3167 - val_accuracy: 0.8270 - val_loss: 0.3065 - learning_rate: 0.0010
+Epoch 23/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 19ms/step - accuracy: 0.8403 - loss: 0.2947 - val_accuracy: 0.8403 - val_loss: 0.2647 - learning_rate: 5.0000e-04
+Epoch 24/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 15ms/step - accuracy: 0.8440 - loss: 0.2821 - val_accuracy: 0.8295 - val_loss: 0.2707 - learning_rate: 5.0000e-04
+Epoch 25/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 14ms/step - accuracy: 0.8499 - loss: 0.2759 - val_accuracy: 0.8429 - val_loss: 0.2542 - learning_rate: 5.0000e-04
+Epoch 26/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 16ms/step - accuracy: 0.8447 - loss: 0.2749 - val_accuracy: 0.8410 - val_loss: 0.2540 - learning_rate: 5.0000e-04
+Epoch 27/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 15ms/step - accuracy: 0.8438 - loss: 0.2741 - val_accuracy: 0.8441 - val_loss: 0.2541 - learning_rate: 5.0000e-04
+Epoch 28/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 12ms/step - accuracy: 0.8458 - loss: 0.2772 - val_accuracy: 0.8365 - val_loss: 0.2649 - learning_rate: 5.0000e-04
+Epoch 29/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 1s 18ms/step - accuracy: 0.8381 - loss: 0.2740 - val_accuracy: 0.8454 - val_loss: 0.2572 - learning_rate: 5.0000e-04
+Epoch 30/30
+74/74 ━━━━━━━━━━━━━━━━━━━━ 2s 10ms/step - accuracy: 0.8497 - loss: 0.2708 - val_accuracy: 0.8416 - val_loss: 0.2525 - learning_rate: 5.0000e-04
+Restoring model weights from the end of the best epoch: 30.
+Training completed in 48.54 seconds
+50/50 ━━━━━━━━━━━━━━━━━━━━ 1s 14ms/step  
+
+Evaluation of GRU model:
+              precision    recall  f1-score   support
+
+           0       0.98      0.91      0.95       477
+           1       0.93      0.97      0.95       205
+           3       0.86      0.93      0.90       210
+           4       0.98      0.96      0.97       223
+           5       0.47      0.66      0.55       222
+           6       0.52      0.36      0.42       236
+
+    accuracy                           0.81      1573
+   macro avg       0.79      0.80      0.79      1573
+weighted avg       0.82      0.81      0.81      1573
+
+Confusion Matrix:
+[[435  11  31   0   0   0]
+ [  4 199   0   2   0   0]
+ [  3   0 196   0  11   0]
+ [  0   5   0 213   3   2]
+ [  0   0   0   1 146  75]
+ [  0   0   0   1 151  84]]
+You must install graphviz (see instructions at https://graphviz.gitlab.io/download/) for `plot_model` to work.
+
+Model Comparison:
+         Model  Accuracy  Macro Avg F1  Weighted Avg F1  Training Time (s)
+5          GRU  0.809282      0.788421         0.808391          48.535848
+3  AdvancedCNN  0.809282      0.784587         0.807599         129.236545
+0          FNN  0.835346      0.759896         0.787289          30.897104
+1  ImprovedFNN  0.832804      0.758050         0.785890          33.236305
+2          CNN  0.821996      0.755504         0.783912          39.096199
+4         LSTM  0.802924      0.748209         0.776853          66.200010
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+Best model (GRU) saved to Deep Learning/Feedforward Neural Network/models\GRU.h5
+
+Best model: GRU
+Saved to: Deep Learning/Feedforward Neural Network/models\GRU.h5

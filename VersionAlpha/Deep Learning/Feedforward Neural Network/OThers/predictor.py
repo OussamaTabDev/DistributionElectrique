@@ -20,10 +20,11 @@ class FaultPredictor:
         self.fault_map = {
             0: 'No Fault',
             1: 'LG (Line to Ground)',
-            2: 'LL (Line to Line)',
-            3: 'LLG (Line-Line to Ground)',
-            4: 'LLL (Three-phase)',
-            5: 'LLLG (Three-phase to Ground)'
+            2: 'LL (Line to Line) AB',
+            3: 'LL (Line to Line) BC',
+            4: 'LLG (Line-Line to Ground)',
+            5: 'LLL (Three-phase)',
+            6: 'LLLG (Three-phase to Ground)'
         }
         self.scaler = StandardScaler()
         
@@ -76,7 +77,7 @@ class FaultPredictor:
         predicted_classes = np.argmax(predictions, axis=1)
         
         # Map to class names
-        predicted_names = [self.fault_map[cls] for cls in predicted_classes]
+        predicted_names = [self.fault_map.get(int(cls), 'Unknown Fault') for cls in predicted_classes]
         
         return predicted_classes, predictions, predicted_names
     
@@ -108,7 +109,7 @@ def main():
     Example usage of the FaultPredictor
     """
     # Load the model
-    predictor = FaultPredictor('Deep Learning/Feedforward Neural Network/models/ImprovedFNN.h5')  # Replace with your best model
+    predictor = FaultPredictor('Deep Learning/Feedforward Neural Network/models/LSTMN.h5')  # Replace with your best model
     
     # Example: Read some test data
     try:
