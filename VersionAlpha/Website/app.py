@@ -11,7 +11,7 @@ import os
 
 # Configuration
 MODEL_DIRS = {
-    "Deep Learning": "Deep Learning/Feedforward Neural Network/models/",
+    "Deep Learning": "Deep Learning/Feedforward Neural Network/Fault_Classification_Results/",
     "Machine Learning": "Machine Learning/Suprivised ML/SML/"
 }
 MODEL_INFO_FILE = "Website/model_info.json"
@@ -451,7 +451,7 @@ def main():
     
     # Load available models
     available_models = get_available_models()
-    
+    # print(available_models)
     # Sidebar configuration
     st.sidebar.title("⚙️ Configuration")
     
@@ -459,6 +459,7 @@ def main():
     if available_models:
         # Group models by type
         dl_models = {name: info for name, info in available_models.items() if info['type'] == 'Deep Learning'}
+        print(dl_models)
         ml_models = {name: info for name, info in available_models.items() if info['type'] == 'Machine Learning'}
         
         # Model type selection

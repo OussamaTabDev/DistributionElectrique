@@ -1,6 +1,6 @@
 {
-    "ImprovedFNN": {
-        "type": "Feedforward Neural Network",
+    "ImprovedFNN_model": {
+        "type": "Deep Learning",
         "architecture": "128-64-32-6",
         "training_date": "2023-05-15",
         "accuracy": 0.982,
@@ -20,8 +20,29 @@
             [0, 0, 0, 0, 0, 195]
         ]
     }, 
-    "CNN": {
-        "type": "Feedforward Neural Network",
+    "AdvancedCNN_model": {
+        "type": "Deep Learning",
+        "architecture": "128-64-32-6",
+        "training_date": "2023-05-15",
+        "accuracy": 0.982,
+        "description": "Enhanced FNN with dropout and regularization for improved generalization.",
+        "metrics": {
+            "accuracy": 0.982,
+            "precision": 0.981,
+            "recall": 0.980,
+            "f1_score": 0.981
+        },
+        "confusion_matrix": [
+            [195, 0, 0, 0, 0, 0],
+            [1, 193, 0, 0, 0, 0],
+            [0, 0, 194, 0, 0, 0],
+            [0, 0, 0, 196, 0, 0],
+            [0, 0, 0, 0, 192, 0],
+            [0, 0, 0, 0, 0, 195]
+        ]
+    }, 
+    "CNN_model": {
+        "type": "Deep Learning",
         "architecture": "128-64-32-6",
         "training_date": "2023-05-15",
         "accuracy": 0.982,
