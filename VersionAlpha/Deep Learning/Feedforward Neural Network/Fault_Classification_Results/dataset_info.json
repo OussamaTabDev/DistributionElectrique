@@ -20,12 +20,12 @@
         "6": 1133
     },
     "classes": {
-        "0": "No Fault",
-        "1": "LG",
-        "2": "LL AB",
-        "3": "LL BC",
-        "4": "LLG",
-        "5": "LLL",
-        "6": "LLLG"
+        "0": "No Fault", 
+        "1": "LG", // line to ground 
+        "2": "LL AB", // line to line (AB) 
+        "3": "LL BC", // line to line (BC) 
+        "4": "LLG",  // line to line to ground  
+        "5": "LLL", //  line to line to line 
+        "6": "LLLG" //  line to line to line to ground
     }
 }
