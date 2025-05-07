@@ -169,7 +169,7 @@ def get_fitted_scaler():
     # Fit the scaler with a wider range of power system measurements
     typical_measurements = np.array([
         # Normal operating conditions
-        [1.0, 1.0, 1.0, 0.1, 0.1, 0.1],
+        [.1, .1, .1, 0.1, 0.1, 0.1],
         # Various fault conditions - expanded ranges
         [-700.0, -150.0, -100.0, 0.3, -0.1, -0.3],  # LG fault (negative currents)
         [700.0, -850.0, -30.0, -0.01, -0.12, 0.13],  # LL fault (mixed currents)
@@ -417,16 +417,37 @@ def parse_csv_data(csv_text):
                     # Extract the 6 measurement values (ignore any fault label)
                     measurements = [float(v) for v in values[-6:]]
                     # If the first values are binary (0/1), they might be one-hot encoded fault type
+                    
                     fault_type = None
                     if all(v in ['0', '1'] for v in values[:4]):
                         fault_encoding = [int(v) for v in values[:4]]
+                        fault_map = {
+                            '0000': 0,  # No Fault
+                            '1001': 1,  # LG
+                            '0011': 2,  # LL
+                            '0110': 3 , # LL
+                            '1011': 4,  # LLG
+                            '0111': 5,  # LLL
+                            '1111': 6   # LLLG
+                        }
                         # Convert from one-hot encoding to fault type if possible
-                        if sum(fault_encoding) == 1:
-                            fault_type = fault_encoding.index(1)
-                        elif sum(fault_encoding) == 2:
+                        if fault_encoding == [0, 0, 0, 0]:
+                            fault_type = 0
+                        elif fault_encoding == [1, 0, 0, 1]:
+                            fault_type = 1
+                        elif fault_encoding == [0, 0, 1, 1]:
+                            fault_type = 2
+                        elif fault_encoding == [0, 1, 1, 0]:
+                            fault_type = 3
+                        elif fault_encoding == [1, 0, 1, 1]:
+                            fault_type = 4
+                        elif fault_encoding == [0, 1, 1, 1]:
+                            fault_type = 5
+                        elif fault_encoding == [1, 1, 1, 1]:
+                            fault_type = 6
                             # This might be a double-fault like LLG
-                            if fault_encoding == [0, 1, 1, 0]:
-                                fault_type = 4  # LLG
+                            # if fault_encoding == [0, 1, 1, 0]:
+                            #     fault_type = 4  # LLG
                     
                     data.append({
                         'measurements': measurements,
@@ -459,7 +480,7 @@ def main():
     if available_models:
         # Group models by type
         dl_models = {name: info for name, info in available_models.items() if info['type'] == 'Deep Learning'}
-        print(dl_models)
+        # print(dl_models)
         ml_models = {name: info for name, info in available_models.items() if info['type'] == 'Machine Learning'}
         
         # Model type selection
@@ -517,21 +538,21 @@ def main():
                                 min_value=-1000.0, 
                                 max_value=1000.0,
                                 step=0.1,
-                                format="%.2f",  # FIXED: More practical precision
+                                format="%.8f",  # FIXED: More practical precision
                                 key="ia_input")
             ib = st.number_input("Ib (Phase B Current)", 
                                 value=st.session_state.ib, 
                                 min_value=-1000.0, 
                                 max_value=1000.0,
                                 step=0.1,
-                                format="%.2f",
+                                format="%.8f",
                                 key="ib_input")
             ic = st.number_input("Ic (Phase C Current)", 
                                 value=st.session_state.ic, 
                                 min_value=-1000.0, 
                                 max_value=1000.0,
                                 step=0.1,
-                                format="%.2f",
+                                format="%.8f",
                                 key="ic_input")
         
         with col2:
@@ -541,21 +562,21 @@ def main():
                                 min_value=-1000.0, 
                                 max_value=1000.0,
                                 step=0.01,
-                                format="%.2f",
+                                format="%.8f",
                                 key="va_input")
             vb = st.number_input("Vb (Phase B Voltage)", 
                                 value=st.session_state.vb, 
                                 min_value=-1000.0, 
                                 max_value=1000.0,
                                 step=0.01,
-                                format="%.2f",
+                                format="%.8f",
                                 key="vb_input")
             vc = st.number_input("Vc (Phase C Voltage)", 
                                 value=st.session_state.vc, 
                                 min_value=-1000.0, 
                                 max_value=1000.0,
                                 step=0.01,
-                                format="%.2f",
+                                format="%.8f",
                                 key="vc_input")
         
         # Update session state with current values
@@ -644,11 +665,13 @@ def main():
             help="Each line should have measurements in the format: [fault_encoding], ia, ib, ic, va, vb, vc"
         )
         
+        print("\n " , csv_data)
         if st.button("Analyze Batch Data", type="primary"):
             if not csv_data.strip():
                 st.warning("Please enter some measurement data to analyze.")
             else:
                 parsed_data = parse_csv_data(csv_data)
+                print("\n " , parsed_data)
                 if parsed_data and model is not None:
                     st.success(f"Successfully parsed {len(parsed_data)} data points")
                     
@@ -657,7 +680,6 @@ def main():
                     for i, data_point in enumerate(parsed_data):
                         measurements = data_point['measurements']
                         true_fault = data_point['fault_type']
-                        
                         predicted_class, confidence, _, _ = predict_fault(
                             model, 
                             measurements,

@@ -109,7 +109,7 @@ def main():
     Example usage of the FaultPredictor
     """
     # Load the model
-    predictor = FaultPredictor('Deep Learning/Feedforward Neural Network/models/LSTMN.h5')  # Replace with your best model
+    predictor = FaultPredictor('Deep Learning/Feedforward Neural Network/Fault_Classification_Results/Knn_model.h5')  # Replace with your best model
     
     # Example: Read some test data
     try:

@@ -20,7 +20,7 @@ import matplotlib.patches as mpatches
 from matplotlib.lines import Line2D
 import matplotlib.gridspec as gridspec
 from datetime import datetime
-import squarify  # For tree maps
+import squarify  # For tree maps 
 
 # Set random seeds for reproducibility
 import tensorflow as tf
