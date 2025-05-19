@@ -12,7 +12,7 @@ import os
 # Configuration
 MODEL_DIRS = {
     "Deep Learning": "Deep Learning/Feedforward Neural Network/Fault_Classification_Results/",
-    "Machine Learning": "Machine Learning/Suprivised ML/SML/"
+    "Machine Learning": "Machine Learning/Suprivised ML/FullRapport/models"
 }
 MODEL_INFO_FILE = "Website/model_info.json"
 
@@ -590,25 +590,13 @@ def main():
         # Create input array
         input_data = [ia, ib, ic, va, vb, vc]
         
-        # Add validation mode toggle
-        validation_mode = st.checkbox("Enable Validation Mode", help="Enable to validate model predictions against known fault types")
-        
-        if validation_mode:
-            true_fault = st.selectbox(
-                "Select the actual fault type for validation:",
-                list(FAULT_MAP.keys()),
-                format_func=lambda x: FAULT_MAP[x]['name']
-            )
-        
         # Prediction button
         if st.button("⚡ Analyze System", type="primary", use_container_width=True):
             with st.spinner("Analyzing measurements..."):
                 if model is not None:
                     predicted_class, confidence, probabilities, validation_metrics = predict_fault(
                         model, 
-                        input_data,
-                        validate=validation_mode,
-                        true_class=true_fault if validation_mode else None
+                        input_data
                     )
                     
                     # Display results
@@ -621,24 +609,24 @@ def main():
                         st.metric("Confidence Level", f"{confidence*100:.2f}%")
                     
                     # Display validation results if in validation mode
-                    if validation_mode and validation_metrics:
-                        st.subheader("Validation Results")
-                        validation_col1, validation_col2 = st.columns(2)
+                    # if validation_mode and validation_metrics:
+                    #     st.subheader("Validation Results")
+                    #     validation_col1, validation_col2 = st.columns(2)
                         
-                        with validation_col1:
-                            st.info(f"True Fault Type: {FAULT_MAP[validation_metrics['true_class']]['name']}")
-                            prediction_correct = validation_metrics['correct']
-                            if prediction_correct:
-                                st.success("✅ Prediction is correct!")
-                            else:
-                                st.error("❌ Prediction is incorrect")
+                    #     with validation_col1:
+                    #         st.info(f"True Fault Type: {FAULT_MAP[validation_metrics['true_class']]['name']}")
+                    #         prediction_correct = validation_metrics['correct']
+                    #         if prediction_correct:
+                    #             st.success("✅ Prediction is correct!")
+                    #         else:
+                    #             st.error("❌ Prediction is incorrect")
                         
-                        with validation_col2:
-                            st.metric(
-                                "Prediction Accuracy",
-                                "100%" if prediction_correct else "0%",
-                                delta="Correct" if prediction_correct else "Incorrect"
-                            )
+                    #     with validation_col2:
+                    #         st.metric(
+                    #             "Prediction Accuracy",
+                    #             "100%" if prediction_correct else "0%",
+                    #             delta="Correct" if prediction_correct else "Incorrect"
+                    #         )
                     
                     # Probability distribution
                     st.subheader("Fault Probability Distribution")
