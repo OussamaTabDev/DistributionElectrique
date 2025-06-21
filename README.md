@@ -1,5 +1,5 @@
 # Electrical Distribution Fault Analysis System
-
+![status](https://img.shields.io/badge/status-completed-brightgreen)
 ## Project Overview
 This project implements a comprehensive system for analyzing and classifying faults in electrical distribution networks using various Machine Learning and Deep Learning approaches. The system includes supervised learning, unsupervised learning, and deep learning models, along with a web interface for real-time fault detection and visualization.
 
